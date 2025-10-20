@@ -21,32 +21,41 @@ def math(weapon, target, rerolls):
     dw = 1
     if "Sustained Hits" in weapon["keywords"]:
         sh = int(weapon["sustained_hits"])
-        a = a * sht[sh]
     if "Lethal Hits" in weapon["keywords"]:
         match w:
             case 2:
+                lh = 1.2
             case 3:
+                lh = 1.4
             case 4:
+                lh = 1.6
             case 5:
+                lh = 1.8
             case 6:
+                lh = 2
     if "Devastating Wounds" in weapon["keywords"]:
         match s:
             case 2:
+                dw = 2
             case 3:
+                dw = 1.8
             case 4:
+                dw = 1.6
             case 5:
+                dw = 1.4
             case 6:
+                dw = 1.2
         
     match rerolls:
         case "None":
-            print(f"{(hw[h - 2][w - 2]) * (a * lh * ((sht[sh] - 1) / 2) + 1)} * {((aps[ap][s - 2]) * (a * dw))}  * {d} {rerolls}")
-            return (hw[h - 2][w - 2]) * (a * lh * ((sht[sh] - 1) / 2) + 1) * ((aps[ap][s - 2]) * (dw * a))  * d * fnpt[fnp]
+            print(f"{((hw[h - 2][w - 2]) * lh) * (a * ((sht[sh] - 1) / 2) + 1)} * {((aps[ap][s - 2]) * (a * dw))}  * {d} {rerolls}")
+            return ((hw[h - 2][w - 2]) * lh) * (a * ((sht[sh] - 1) / 2) + 1) * ((aps[ap][s - 2]) * (dw * a))  * d * fnpt[fnp]
         case "Reroll Hits 1":
-            print(f"{(hwr1[h - 2][w - 2]) * (a * lh * ((sht[sh] - 1) / 2) + 1)} * {((aps[ap][s - 2]) * (a * dw))}  * {d} {rerolls}")
-            return (hwr1[h - 2][w - 2]) * (a * lh * ((sht[sh] - 1) / 2) + 1) * ((aps[ap][s - 2]) * (dw * a))  * d * fnpt[fnp]
+            print(f"{((hwr1[h - 2][w - 2]) * lh) * (a * ((sht[sh] - 1) / 2) + 1)} * {((aps[ap][s - 2]) * (a * dw))}  * {d} {rerolls}")
+            return ((hwr1[h - 2][w - 2]) * lh) * (a * ((sht[sh] - 1) / 2) + 1) * ((aps[ap][s - 2]) * (dw * a))  * d * fnpt[fnp]
         case "Reroll Hits":
-            print(f"{(hwrh[h - 2][w - 2]) * (a * lh * ((sht[sh] - 1) / 2) + 1)} * {((aps[ap][s - 2]) * (a * dw))}  * {d} {rerolls}")
-            return (hwrh[h - 2][w - 2]) * (a * lh * ((sht[sh] - 1) / 2) + 1) * ((aps[ap][s - 2]) * (dw * a))  * d * fnpt[fnp]
+            print(f"{((hwrh[h - 2][w - 2]) * lh) * (a * ((sht[sh] - 1) / 2) + 1)} * {((aps[ap][s - 2]) * (a * dw))}  * {d} {rerolls}")
+            return ((hwrh[h - 2][w - 2]) * lh) * (a * ((sht[sh] - 1) / 2) + 1) * ((aps[ap][s - 2]) * (dw * a))  * d * fnpt[fnp]
         case "Reroll Hits Reroll Wounds":
-            print(f"{(hwrhrw[h - 2][w - 2]) * (a * lh * ((sht[sh] - 1) / 2) + 1)} * {((aps[ap][s - 2]) * (a * dw))}  * {d} {rerolls}")
-            return (hwrhrw[h - 2][w - 2]) * (a * lh * ((sht[sh] - 1) / 2) + 1) * ((aps[ap][s - 2]) * (dw * a))  * d * fnpt[fnp]
+            print(f"{((hwrhrw[h - 2][w - 2]) * lh) * (a * ((sht[sh] - 1) / 2) + 1)} * {((aps[ap][s - 2]) * (a * dw))}  * {d} {rerolls}")
+            return ((hwrhrw[h - 2][w - 2]) * lh) * (a * ((sht[sh] - 1) / 2) + 1) * ((aps[ap][s - 2]) * (dw * a))  * d * fnpt[fnp]
